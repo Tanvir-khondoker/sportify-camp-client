@@ -3,6 +3,7 @@ import {
   } from "react-router-dom";
 import Main from "../Layout/Main";
 import Home from "../pages/Home/Home/Home";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 
 
@@ -11,6 +12,7 @@ import Home from "../pages/Home/Home/Home";
     {
       path: "/",
       element: <Main/>,
+      errorElement:<ErrorPage/>,
       children:[
         {
             path:'/',
