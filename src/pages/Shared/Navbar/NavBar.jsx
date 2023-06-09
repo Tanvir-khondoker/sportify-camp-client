@@ -30,17 +30,17 @@ const NavBar = () => {
   };
 
   return (
-    <nav className="flex flex-wrap items-center justify-between bg-white text-black p-4 rounded mt-1 h-28">
+    <nav className="fixed z-10 bg-opacity-30 min-w-[84%]   flex flex-wrap items-center justify-between bg-black text-white p-4 rounded  h-20">
       <div className="flex items-center">
         <Link
           to="/"
-          className="flex flex-col items-center text-black font-bold text-lg"
+          className="flex flex-col items-center  font-bold text-lg"
         >
           {/* i can use img here if i wan to add a logo to nav */}
           <p>SportifyCamp</p>
         </Link>
         <button
-          className="text-black ml-4 block sm:hidden focus:outline-none"
+          className=" ml-4 block sm:hidden focus:outline-none"
           onClick={toggleMenu}
         >
           <svg
@@ -67,19 +67,19 @@ const NavBar = () => {
         <div className="sm:flex sm:items-center">
           <Link
             to="/"
-            className="text-black ml-4 block mt-4 sm:inline-block sm:mt-0"
+            className=" ml-4 block mt-4 sm:inline-block sm:mt-0"
           >
             Home
           </Link>
           <Link
             to="/instructors"
-            className="text-black ml-4 block mt-4 sm:inline-block sm:mt-0"
+            className=" ml-4 block mt-4 sm:inline-block sm:mt-0"
           >
             Instructors
           </Link>
           <Link
             to="/classes"
-            className="text-black ml-4 block mt-4 sm:inline-block sm:mt-0"
+            className=" ml-4 block mt-4 sm:inline-block sm:mt-0"
           >
             Classes
           </Link>
@@ -87,7 +87,7 @@ const NavBar = () => {
           {user && (
             <Link
               to="/dashboard"
-              className="text-black ml-4 block mt-4 sm:inline-block sm:mt-0"
+              className=" ml-4 block mt-4 sm:inline-block sm:mt-0"
             >
               Dashboard
             </Link>
@@ -100,7 +100,7 @@ const NavBar = () => {
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >
-              <button className="flex items-center text-black focus:outline-none">
+              <button className="flex items-center  focus:outline-none">
                 {isNameVisible && (
                   <span className="mr-2 ml-2">{user?.displayName}</span>
                 )}
@@ -121,7 +121,7 @@ const NavBar = () => {
           ) : (
             <Link
               to="/login"
-              className="text-black ml-4 btn btn-outline btn-primary  text-lg "
+              className=" ml-4 btn btn-outline btn-primary  text-lg "
             >
               Login
             </Link>
