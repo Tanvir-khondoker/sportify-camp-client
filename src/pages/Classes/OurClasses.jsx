@@ -1,10 +1,16 @@
+import ClassesPageBanner from "../../components/ClassesPageBanner/ClassesPageBanner";
 
 const OurClasses = () => {
-    return (
-        <div>
-            <h3>coming soon --------</h3>
-        </div>
-    );
+  return (
+    <div>
+        <ClassesPageBanner/>
+     
+
+
+
+
+    </div>
+  );
 };
 
 export default OurClasses;
