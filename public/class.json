@@ -1,7 +1,7 @@
 [
     {
       "_id": "1",
-      "class": "Football",
+      "name": "Football",
       "img": "https://i.ibb.co/V9WmD9h/football.jpg",
       "instructor": "John Smith",
       "email": "johnsmith@example.com",
@@ -13,7 +13,7 @@
     },
     {
       "_id": "2",
-      "class": "Basketball",
+      "name": "Basketball",
       "img": "https://i.ibb.co/px9fvJh/basketball.jpg",
       "instructor": "Emily Johnson",
       "email": "emilyjohnson@example.com",
@@ -25,7 +25,7 @@
     },
     {
       "_id": "3",
-      "class": "Tennis",
+      "name": "Tennis",
       "img": "https://i.ibb.co/7KNPgkg/tennis.jpg",
       "instructor": "David Wilson",
       "email": "davidwilson@example.com",
@@ -37,7 +37,7 @@
     },
     {
       "_id": "4",
-      "class": "Golf",
+      "name": "Golf",
       "img": "https://i.ibb.co/MVbVVKD/golf.jpg",
       "instructor": "John Smith",
       "email": "johnsmith@example.com",
@@ -49,7 +49,7 @@
     },
     {
       "_id": "5",
-      "class": "Running",
+      "name": "Running",
       "img": "https://i.ibb.co/dQWr6vs/running.jpg",
       "instructor": "Emily Johnson",
       "email": "emilyjohnson@example.com",
@@ -61,7 +61,7 @@
     },
     {
       "_id": "6",
-      "class": "Boxing",
+      "name": "Boxing",
       "img": "https://cdn.evolve-mma.com/wp-content/uploads/2022/09/training-boxing-in-your-40s-.jpg",
       "instructor": "David Wilson",
       "email": "davidwilson@example.com",
@@ -73,7 +73,7 @@
     },
     {
       "_id": "7",
-      "class": "Cycling",
+      "name": "Cycling",
       "img": "https://i.ibb.co/vBMCDnK/Cycling.jpg",
       "instructor": "John Smith",
       "email": "johnsmith@example.com",
@@ -85,7 +85,7 @@
     },
     {
       "_id": "8",
-      "class": "Yoga",
+      "name": "Yoga",
       "img": "https://i.ibb.co/jvfNw7t/Yoga.jpg",
       "instructor": "Emily Johnson",
       "email": "emilyjohnson@example.com",
@@ -97,7 +97,7 @@
     },
     {
       "_id": "9",
-      "class": "Table Tennis",
+      "name": "Table Tennis",
       "img": "https://i.ibb.co/HnJvg6V/Table-Tennis.jpg",
       "instructor": "David Wilson",
       "email": "davidwilson@example.com",
@@ -109,7 +109,7 @@
     },
     {
       "_id": "10",
-      "class": "Soccer",
+      "name": "Soccer",
       "img": "https://www.topdrawersoccer.com/media/article/?mediaId=29413",
       "instructor": "John Smith",
       "email": "johnsmith@example.com",
@@ -117,11 +117,11 @@
       "price": 25,
       "status": "approved",
       "category": "Dynamic Athletics",
-      "enrolled": 0
+      "enrolled": 3
     },
     {
       "_id": "11",
-      "class": "Volleyball",
+      "name": "Volleyball",
       "img": "https://i.ibb.co/Y2zptsd/Volleyball.jpg",
       "instructor": "Emily Johnson",
       "email": "emilyjohnson@example.com",
@@ -133,7 +133,7 @@
     },
     {
       "_id": "12",
-      "class": "Martial Arts",
+      "name": "Martial Arts",
       "img": "https://i.ibb.co/x8vBLYx/Martial-Arts.jpg",
       "instructor": "David Wilson",
       "email": "davidwilson@example.com",
