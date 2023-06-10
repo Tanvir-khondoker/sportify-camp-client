@@ -4,6 +4,8 @@ import {
 import Main from "../Layout/Main";
 import Home from "../pages/Home/Home/Home";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import OurClasses from "../pages/Classes/OurClasses";
+import Instructors from "../pages/Instructors/Instructors";
 
 
 
@@ -17,6 +19,14 @@ import ErrorPage from "../pages/ErrorPage/ErrorPage";
         {
             path:'/',
             element:<Home/>
+        },
+        {
+            path:'/classes',
+            element:<OurClasses/>
+        },
+        {
+            path:'/instructors',
+            element:<Instructors/>
         }
       ]
     },
