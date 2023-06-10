@@ -30,7 +30,7 @@ const NavBar = () => {
   };
 
   return (
-    <nav className="fixed z-10 bg-opacity-30 min-w-[84%]   flex flex-wrap items-center justify-between bg-black text-white p-4 rounded  h-20">
+    <nav className="fixed z-10 bg-opacity-30 min-w-[84%] max-w-screen-xl  flex flex-wrap items-center justify-between bg-black text-white p-4 rounded  h-20">
       <div className="flex items-center">
         <Link
           to="/"

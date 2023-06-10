@@ -1,13 +1,13 @@
 const Item = ({ name, img, instructor, available, price }) => {
     return (
-      <div className="mb-5 mx-auto">
-        <img className="w-52 h-36 rounded" src={img} alt={name} />
-        <div >
-          <h2 className="font-bold py-2">Course Name:{name}</h2>
-          <p>Instructor : {instructor}</p>
+      <div className="mb-5 mx-auto border-2 border-teal-500 p-4 rounded-xl">
+        <img className="w-52 h-36 rounded-xl" src={img} alt={name} />
+        <div>
+          <h2 className="font-bold py-2 uppercase">--- Name: {name} ---</h2>
+          <p className="font-semibold">Instructor: {instructor}</p>
           <p>
-            <span>Available Seat: {available }</span> 
-              <span> Fees: ${price}</span>
+            <span>Available Seat: {available}.</span>{" "}
+            <span className="text-orange-500">Fees: ${price}.</span>
           </p>
         </div>
       </div>
