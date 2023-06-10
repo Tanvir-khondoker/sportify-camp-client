@@ -8,7 +8,7 @@
       "available": 10,
       "price": 50,
       "status": "approved",
-      "category": "Dynamic Athletics",
+      "category": "dynamic_athletics",
       "enrolled": 2
     },
     {
@@ -20,7 +20,7 @@
       "available": 8,
       "price": 40,
       "status": "approved",
-      "category": "Precision Striking",
+      "category": "precision_striking",
       "enrolled": 1
     },
     {
@@ -32,7 +32,7 @@
       "available": 12,
       "price": 60,
       "status": "approved",
-      "category": "Court Dominance",
+      "category": "court_dominance",
       "enrolled": 0
     },
     {
@@ -44,7 +44,7 @@
       "available": 6,
       "price": 45,
       "status": "approved",
-      "category": "Court Dominance",
+      "category": "court_dominance",
       "enrolled": 0
     },
     {
@@ -56,7 +56,7 @@
       "available": 15,
       "price": 70,
       "status": "approved",
-      "category": "Endurance Challenge",
+      "category": "endurance_challenge",
       "enrolled": 2
     },
     {
@@ -68,7 +68,7 @@
       "available": 9,
       "price": 55,
       "status": "approved",
-      "category": "Precision Striking",
+      "category": "precision_striking",
       "enrolled": 1
     },
     {
@@ -80,7 +80,7 @@
       "available": 11,
       "price": 65,
       "status": "approved",
-      "category": "Endurance Challenge",
+      "category": "endurance_challenge",
       "enrolled": 3
     },
     {
@@ -92,7 +92,7 @@
       "available": 7,
       "price": 35,
       "status": "approved",
-      "category": "Dynamic Athletics",
+      "category": "dynamic_athletics",
       "enrolled": 2
     },
     {
@@ -104,7 +104,7 @@
       "available": 14,
       "price": 75,
       "status": "approved",
-      "category": "Precision Striking",
+      "category": "precision_striking",
       "enrolled": 1
     },
     {
@@ -116,7 +116,7 @@
       "available": 4,
       "price": 25,
       "status": "approved",
-      "category": "Dynamic Athletics",
+      "category": "dynamic_athletics",
       "enrolled": 3
     },
     {
@@ -128,7 +128,7 @@
       "available": 13,
       "price": 80,
       "status": "approved",
-      "category": "Court Dominance",
+      "category": "court_dominance",
       "enrolled": 3
     },
     {
@@ -140,7 +140,7 @@
       "available": 3,
       "price": 20,
       "status": "approved",
-      "category": "Precision Striking",
+      "category": "precision_striking",
       "enrolled": 1
     }
   ]

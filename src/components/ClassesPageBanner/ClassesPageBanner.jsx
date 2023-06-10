@@ -13,7 +13,7 @@ const ClassesPageBanner = () => {
             <h1 className="mb-5 text-5xl font-bold">
               Discover Exciting Sports Classes and Courses
             </h1>
-            <p className="mb-5">
+            <p className="mb-5 font-semibold">
               Explore a diverse range of sports classes and courses to excel in
               your athletic pursuits. Whether you are a beginner or experienced,
               our qualified coaches offer comprehensive instruction.. Join us
