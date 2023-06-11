@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const NavBar = () => {
-  const user = true;
+  const user = false;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isNameVisible, setIsNameVisible] = useState(false);
 

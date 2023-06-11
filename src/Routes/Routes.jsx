@@ -6,6 +6,8 @@ import Home from "../pages/Home/Home/Home";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import OurClasses from "../pages/Classes/OurClasses";
 import Instructors from "../pages/Instructors/Instructors";
+import Login from "../pages/Login/Login";
+import SignUp from "../pages/SignUp/SignUp";
 
 
 
@@ -23,6 +25,14 @@ import Instructors from "../pages/Instructors/Instructors";
         {
             path:'/classes',
             element:<OurClasses/>
+        },
+        {
+            path:'/login',
+            element:<Login/>
+        },
+        {
+            path:'/signup',
+            element:<SignUp/>
         },
         {
             path:'/instructors',
