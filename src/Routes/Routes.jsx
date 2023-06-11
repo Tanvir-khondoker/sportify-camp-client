@@ -8,6 +8,8 @@ import OurClasses from "../pages/Classes/OurClasses";
 import Instructors from "../pages/Instructors/Instructors";
 import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
+import Secret from "../pages/Shared/Secrect/Secret";
+import PrivateRoute from "./PrivateRoute";
 
 
 
@@ -33,6 +35,10 @@ import SignUp from "../pages/SignUp/SignUp";
         {
             path:'/signup',
             element:<SignUp/>
+        },
+        {
+            path:'/secret',
+            element:<PrivateRoute><Secret/></PrivateRoute>
         },
         {
             path:'/instructors',

@@ -1,9 +1,13 @@
 /* eslint-disable no-undef */
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../providers/AuthProvider";
+import errorImgProfile from '../../../../public/assets/proffile_pic/default_proffile.png';
+import { FaChalkboardTeacher } from "react-icons/fa";
+
 
 const NavBar = () => {
-  const user = false;
+  const {user,logOut} = useContext(AuthContext);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isNameVisible, setIsNameVisible] = useState(false);
 
@@ -13,12 +17,7 @@ const NavBar = () => {
 
   const handleLogout = () => {
     logOut()
-      .then(() => {
-        // Sign-out successful.
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+      
   };
 
   const handleMouseEnter = () => {
@@ -30,7 +29,7 @@ const NavBar = () => {
   };
 
   return (
-    <nav className="fixed z-10 bg-opacity-30 min-w-[84%] max-w-screen-xl  flex flex-wrap items-center justify-between bg-black text-white p-4 rounded  h-20">
+    <nav className="fixed z-10 bg-opacity-30 min-w-[84%] max-w-screen-xl  flex flex-wrap items-center justify-between bg-black text-white p-4 rounded  lg:h-20 ">
       <div className="flex items-center">
         <Link
           to="/"
@@ -83,6 +82,21 @@ const NavBar = () => {
           >
             Classes
           </Link>
+          <Link
+            to="/secret"
+            className=" ml-4 block mt-4 sm:inline-block sm:mt-0"
+          >
+            Secret
+          </Link>
+          <Link
+            to="/"
+            className=" ml-4 block mt-4 sm:inline-block sm:mt-0"
+          >
+        <button className="btn">
+           <FaChalkboardTeacher/>
+          <div className="badge badge-secondary">+0</div>
+        </button>
+          </Link>
 
           {user && (
             <Link
@@ -104,16 +118,12 @@ const NavBar = () => {
                 {isNameVisible && (
                   <span className="mr-2 ml-2">{user?.displayName}</span>
                 )}
-                <img
-                  src={user?.photoURL}
-                  alt="User Profile"
-                  className="h-11  ml-4 rounded-full"
-                />
+                <img className="ml-2 rounded-3xl h-12" src={user?.photoURL ||errorImgProfile } alt="" />
               </button>
 
               <button
                 onClick={handleLogout}
-                className=" ml-9 btn btn-outline btn-accent"
+                className=" ml-9 btn btn-outline border-t-neutral-800"
               >
                 Logout
               </button>
@@ -121,7 +131,7 @@ const NavBar = () => {
           ) : (
             <Link
               to="/login"
-              className=" ml-4 btn btn-outline btn-primary  text-lg "
+              className=" ml-4 btn btn-outline border-t-neutral-800  text-lg "
             >
               Login
             </Link>
