@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import useCart from "../../hooks/useCart";
 
 const CourseCard = ({ item }) => {
-  const { name, img, instructor, available, price, _id } = item;
+  const { name, img, instructor, available, price, _id,email } = item;
   const { user } = useContext(AuthContext);
   const [, refetch] = useCart();
   const navigate = useNavigate();
@@ -17,6 +17,8 @@ const CourseCard = ({ item }) => {
       const cartItem = {
         courseId: _id,
         name,
+        instructor,
+        instructorEmail:email,
         img,
         price,
         email: user.email,

@@ -1,11 +1,12 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { FaGoogle, FaEye, FaEyeSlash } from "react-icons/fa";
+import {  FaEye, FaEyeSlash } from "react-icons/fa";
 import classNames from "classnames";
 import { useContext } from "react";
 import img from "../../../public/assets/loginImg/4419038.jpg";
 import { AuthContext } from "../../providers/AuthProvider";
 import { Helmet } from "react-helmet-async";
+import SocialLogin from "../SocialLogin/SocialLogin";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -14,7 +15,7 @@ const Login = () => {
   const from = new URLSearchParams(location.search).get("from") || "/";
 
 
-  const { signIn, signInWithGoogle } = useContext(AuthContext);
+  const { signIn} = useContext(AuthContext);
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -116,12 +117,7 @@ const Login = () => {
                   </p>
 
                   <div>
-                    <button
-                      onClick={signInWithGoogle}
-                      className="flex items-center gap-2 btn btn-outline mt-8 mb-3 mx-auto"
-                    >
-                      <FaGoogle /> sign in with google
-                    </button>
+                    <SocialLogin/>
                   </div>
                 </div>
               </div>

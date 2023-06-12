@@ -3,6 +3,8 @@ import { createContext, useEffect, useState } from "react";
 import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { app } from "../firebase/firebase.config";
 import Swal from "sweetalert2";
+import { useForm } from "react-hook-form";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const auth = getAuth(app);
 
@@ -11,6 +13,9 @@ export const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const {
+    reset, // Add reset function from react-hook-form
+  } = useForm();
 
   // creating user with email and pass
   const createUser = (email, password, displayName, photoURL) => {
@@ -20,37 +25,21 @@ const AuthProvider = ({ children }) => {
         const user = userCredential.user;
         return updateProfile(user, {
           displayName: displayName,
-          photoURL: photoURL
+          photoURL: photoURL,
         });
-      })
-      .then(() => {
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Create user error:", error);
-        setLoading(false);
-        throw error;
       });
   };
-  
+
+
+    
 
   // google sign in
   const googleProvider = new GoogleAuthProvider();
   const signInWithGoogle = () => {
     setLoading(true);
-    signInWithPopup(auth, googleProvider)
-      .then((result) => {
-        // Google sign-in successful
-        const user = result.user;
-        setLoading(false);
-      })
-      .catch((error) => {
-        // Handle errors
-        console.error("Google sign-in error:", error);
-        setLoading(false);
-      });
+   return signInWithPopup(auth, googleProvider)
+      
   };
-  
 
   // onAuthStateChanged
   useEffect(() => {
@@ -62,12 +51,10 @@ const AuthProvider = ({ children }) => {
 
     return unsubscribe;
   }, []);
-  
 
-  const signIn = (email, password) =>{
+  const signIn = (email, password) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password)
-      
       .finally(() => {
         setUser(user);
         Swal.fire({
@@ -80,15 +67,14 @@ const AuthProvider = ({ children }) => {
         setLoading(false);
       });
   };
-    
-  const logOut = () =>{
+
+  const logOut = () => {
     setLoading(true);
     return signOut(auth)
       .finally(() => {
         setLoading(false);
       });
   };
-
 
   const authInfo = {
     user,
@@ -101,7 +87,7 @@ const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider value={authInfo}>
-        {children}
+      {children}
     </AuthContext.Provider>
   );
 };

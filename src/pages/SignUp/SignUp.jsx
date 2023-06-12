@@ -1,21 +1,55 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import img from "../../../public/assets/loginImg/4419038.jpg";
 import { useForm } from "react-hook-form";
-import { FaGoogle } from "react-icons/fa";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import { Helmet } from "react-helmet-async";
+import Swal from "sweetalert2";
+import SocialLogin from "../SocialLogin/SocialLogin";
 
 const SignUp = () => {
-  const { signInWithGoogle,createUser } = useContext(AuthContext);
-  const {
+     const navigate = useNavigate();
+    const {
+    reset, // Add reset function from react-hook-form
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  const {  createUser } = useContext(AuthContext);
+
   const onSubmit = (data) => {
-    console.log(data);
     createUser(data.email, data.password, data.name, data.photo)
+      .then(() => {
+       const savedUser = {name:data.name, email:data.email, photo:data.photo}
+        fetch(`http://localhost:5000/users`,{
+            method:"POST",
+            headers:{
+                'content-type' : 'application/json'
+            },
+            body:JSON.stringify(savedUser)
+        })
+        .then(res => res.json())
+        .then(data =>{
+            if(data.insertedId){
+                reset();
+                Swal.fire({
+                  position:'top-end',
+                  icon:'success',
+                  title:'user created successfully',
+                  showCancelButton:false,
+                  timer:1500  
+                });
+                navigate('/');  
+            }
+        })
+        
+      })
+      .catch((error) => {
+        console.error("Create user error:", error);
+        
+        throw error;
+      });
   };
 
   return (
@@ -143,16 +177,11 @@ const SignUp = () => {
 
                   <p className="text-center mt-5 font-bold">
                     Already have an account?
-                    <Link to="/login" className="text-amber-600 ">
+                    <Link to="/login" className="text-amber-600">
                       login
                     </Link>{" "}
                   </p>
-                  <button
-                    onClick={signInWithGoogle}
-                    className="flex items-center gap-2 btn btn-outline mt-8 mb-3 mx-auto"
-                  >
-                    <FaGoogle /> sign Up with google
-                  </button>
+                  <SocialLogin/>
                 </div>
               </div>
             </div>

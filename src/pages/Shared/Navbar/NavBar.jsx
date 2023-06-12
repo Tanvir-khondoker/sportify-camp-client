@@ -91,10 +91,10 @@ const NavBar = () => {
             Secret
           </Link>
           <Link
-            to="/"
+            to="/dashboard/mycart"
             className=" ml-4 block mt-4 sm:inline-block sm:mt-0"
           >
-        <button className="btn">
+        <button className="btn h-6">
            <FaChalkboardTeacher/>
           <div className="badge badge-secondary">+{cart?.length || 0}</div>
         </button>
