@@ -1,11 +1,12 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import {  FaEye, FaEyeSlash } from "react-icons/fa";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import classNames from "classnames";
 import { useContext } from "react";
 import img from "../../../public/assets/loginImg/4419038.jpg";
 import { AuthContext } from "../../providers/AuthProvider";
 import { Helmet } from "react-helmet-async";
+import { useForm } from "react-hook-form";
 import SocialLogin from "../SocialLogin/SocialLogin";
 
 const Login = () => {
@@ -14,20 +15,25 @@ const Login = () => {
   const navigate = useNavigate();
   const from = new URLSearchParams(location.search).get("from") || "/";
 
+  const { signIn } = useContext(AuthContext);
 
-  const { signIn} = useContext(AuthContext);
+  const {
+    reset,
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  const handleLogin = (event) => {
-    event.preventDefault();
-    const form = event.target;
-    const email = form.email.value;
-    const password = form.password.value;
+  const handleLogin = (data) => {
+    const email = data.email;
+    const password = data.password;
 
     signIn(email, password)
       .then((Result) => {
         const user = Result.user;
         console.log(user);
         navigate(from);
+        reset();
       })
       .catch((error) => console.log(error));
   };
@@ -54,7 +60,7 @@ const Login = () => {
           </div>
 
           <form
-            onSubmit={handleLogin}
+            onSubmit={handleSubmit(handleLogin)}
             className="flex flex-col items-center justify-center w-full lg:w-1/2"
           >
             <h1 className="text-center text-4xl font-bold mt-10 mb-6">
@@ -68,10 +74,12 @@ const Login = () => {
                   </label>
                   <input
                     type="text"
-                    name="email"
-                    placeholder="Email"
+                    {...register("email", { required: true })}
                     className="input input-bordered w-full"
                   />
+                  {errors.email && (
+                    <span className="text-red-600">Email is required</span>
+                  )}
                 </div>
                 <div className="form-control">
                   <label className="label">
@@ -80,8 +88,7 @@ const Login = () => {
                   <div className="relative">
                     <input
                       type={showPassword ? "text" : "password"}
-                      name="password"
-                      placeholder="Password"
+                      {...register("password", { required: true })}
                       className={classNames(
                         "input",
                         "input-bordered",
@@ -101,26 +108,34 @@ const Login = () => {
                       />
                     )}
                   </div>
+                  {errors.password && (
+                    <span className="text-red-600">Password is required</span>
+                  )}
                 </div>
-                <div className="form-control mt-6">
-                  <input
-                    type="submit"
-                    className="btn btn-primary w-full"
-                    value="Login"
-                  />
 
-                  <p className="text-center mt-5 font-bold">
-                    New to SportifyCamp?
-                    <Link to="/signup" className="text-amber-600 ">
-                      Sign Up
-                    </Link>{" "}
-                  </p>
-
-                  <div>
-                    <SocialLogin/>
-                  </div>
-                </div>
+                <button className="btn btn-primary w-full" type="submit">
+                  Sign In
+                </button>
               </div>
+            </div>
+
+            <div className="flex flex-col items-center space-y-4 w-full mt-6">
+              <span className="text-xs text-gray-500">
+                Do not have an account?
+              </span>
+              <Link
+                to="/signup"
+                className="btn btn-link text-base-content"
+                tabIndex="-1"
+              >
+                Sign Up
+              </Link>
+            </div>
+
+            <div className="divider-text">or</div>
+
+            <div className="flex flex-col space-y-2">
+              <SocialLogin />
             </div>
           </form>
         </div>

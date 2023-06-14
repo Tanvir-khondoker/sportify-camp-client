@@ -8,46 +8,60 @@ import Swal from "sweetalert2";
 import SocialLogin from "../SocialLogin/SocialLogin";
 
 const SignUp = () => {
-     const navigate = useNavigate();
-    const {
-    reset, // Add reset function from react-hook-form
+  const navigate = useNavigate();
+  const {
+    reset,
     register,
     handleSubmit,
     formState: { errors },
+    watch,
   } = useForm();
 
-  const {  createUser } = useContext(AuthContext);
+  const { createUser } = useContext(AuthContext);
+
+  const password = watch("password");
 
   const onSubmit = (data) => {
+    if (data.password !== data.confirmPassword) {
+      Swal.fire({
+        icon: "error",
+        title: "Passwords do not match",
+        text: "Please enter the same password in both fields",
+      });
+      return;
+    }
+
     createUser(data.email, data.password, data.name, data.photo)
       .then(() => {
-       const savedUser = {name:data.name, email:data.email, photo:data.photo}
-        fetch(`http://localhost:5000/users`,{
-            method:"POST",
-            headers:{
-                'content-type' : 'application/json'
-            },
-            body:JSON.stringify(savedUser)
+        const savedUser = {
+          name: data.name,
+          email: data.email,
+          photo: data.photo,
+        };
+        fetch("http://localhost:5000/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(savedUser),
         })
-        .then(res => res.json())
-        .then(data =>{
-            if(data.insertedId){
-                reset();
-                Swal.fire({
-                  position:'top-end',
-                  icon:'success',
-                  title:'user created successfully',
-                  showCancelButton:false,
-                  timer:1500  
-                });
-                navigate('/');  
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.insertedId) {
+              reset();
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "User created successfully",
+                showCancelButton: false,
+                timer: 1500,
+              });
+              navigate("/");
             }
-        })
-        
+          });
       })
       .catch((error) => {
         console.error("Create user error:", error);
-        
         throw error;
       });
   };
@@ -126,7 +140,9 @@ const SignUp = () => {
                     className="input input-bordered w-full"
                   />
                   {errors.photo?.type === "required" && (
-                    <span className="text-red-600">Photo URL is required</span>
+                    <span className="text-red-600">
+                      Photo URL is required
+                    </span>
                   )}
                 </div>
 
@@ -140,8 +156,7 @@ const SignUp = () => {
                       required: true,
                       maxLength: 20,
                       minLength: 6,
-                      pattern:
-                        /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/,
+                      pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/,
                     })}
                     name="password"
                     placeholder="Password"
@@ -168,6 +183,32 @@ const SignUp = () => {
                   )}
                 </div>
 
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text">Confirm Password</span>
+                  </label>
+                  <input
+                    type="password"
+                    {...register("confirmPassword", {
+                      required: true,
+                      validate: (value) => value === password,
+                    })}
+                    name="confirmPassword"
+                    placeholder="Confirm Password"
+                    className="input input-bordered w-full"
+                  />
+                  {errors.confirmPassword?.type === "required" && (
+                    <span className="text-red-600">
+                      Confirm Password is required
+                    </span>
+                  )}
+                  {errors.confirmPassword?.type === "validate" && (
+                    <span className="text-red-600">
+                      Passwords do not match
+                    </span>
+                  )}
+                </div>
+
                 <div className="form-control mt-6">
                   <input
                     className="btn btn-primary w-full"
@@ -176,12 +217,12 @@ const SignUp = () => {
                   />
 
                   <p className="text-center mt-5 font-bold">
-                    Already have an account?
+                    Already have an account?{" "}
                     <Link to="/login" className="text-amber-600">
-                      login
+                      Login
                     </Link>{" "}
                   </p>
-                  <SocialLogin/>
+                  <SocialLogin />
                 </div>
               </div>
             </div>

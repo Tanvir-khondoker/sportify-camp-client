@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 
 const MyCart = () => {
   const [cart, refetch] = useCart();
-  const total = cart ? cart.reduce((sum, item) => item.price + sum, 0) : 0;
+  const total = Array.isArray(cart) ? cart.reduce((sum, item) => item.price + sum, 0) : 0;
 
   const handleDelete = (item) => {
     Swal.fire({
@@ -56,8 +56,7 @@ const MyCart = () => {
             </tr>
           </thead>
           <tbody>
-            {cart && cart.length > 0 ? (
-              // Add a null check and check if cart is not empty
+            {Array.isArray(cart) && cart.length > 0 ? (
               cart.map((item, index) => (
                 <tr key={item._id}>
                   <td>{index + 1}</td>
@@ -89,9 +88,8 @@ const MyCart = () => {
                 </tr>
               ))
             ) : (
-              // Display a message if the cart is empty
               <tr>
-                <td colSpan="5"><progress className="progress w-56"></progress></td>
+                <td colSpan="5">Your cart is empty.</td>
               </tr>
             )}
           </tbody>

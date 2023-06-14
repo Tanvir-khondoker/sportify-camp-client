@@ -5,10 +5,10 @@ import PopularInstructors from "../popularInstructors/PopularInstructors";
 
 const Home = () => {
     return (
+        
         <div>
             <Helmet>
         <title>SportifyCamp | Home</title>
-        
       </Helmet>
             <Slider/>
             <PopularClasses/>
