@@ -41,7 +41,7 @@ const[isInstructor] = useInstructor();
              </NavLink>
            </li>
            <li>
-             <NavLink to="/dashboard/courses">
+             <NavLink to="/dashboard/manageClasses">
             <FaChalkboardTeacher/> Manage Classes
              </NavLink>
            </li>
