@@ -1,16 +1,21 @@
-import { useContext } from "react";
-import { AuthContext } from "../../providers/AuthProvider";
+
 import Swal from "sweetalert2";
 import { useLocation, useNavigate } from "react-router-dom";
 import useCart from "../../hooks/useCart";
+import useAuth from "../../hooks/useAuth";
+import useAdmin from "../../hooks/useAdmin";
+import useInstructor from "../../hooks/useInstructor";
 
 const CourseCard = ({ item }) => {
   const { name, img, instructor, available, price, _id,email } = item;
-  const { user } = useContext(AuthContext);
+  const { user } = useAuth();
   const [, refetch] = useCart();
   const navigate = useNavigate();
   const location = useLocation();
-
+  const[isAdmin] = useAdmin();
+  const[isInstructor] = useInstructor();
+  
+  
   const handleSelect = (item) => {
     console.log(item);
     if (user && user.email) {
@@ -60,7 +65,7 @@ const CourseCard = ({ item }) => {
   };
 
   return (
-    <div className="card w-96 bg-base-100 shadow-xl">
+    <div className={`card w-96 bg-${available === 0 ? 'dark-red ring ring-red-500 ring-offset-base-900' : 'base-100 ring ring-base-200 ring-offset-base-900'} shadow-xl`}>
       <figure className="px-10 pt-10">
         <img className="rounded-xl h-48" src={img} />
       </figure>
@@ -73,7 +78,7 @@ const CourseCard = ({ item }) => {
         <p className="font-semibold">Instructor: {instructor}</p>
 
         <div className="card-actions">
-          <button onClick={() => handleSelect(item)} className="btn btn-primary">
+          <button onClick={() => handleSelect(item)} className="btn btn-primary" disabled={isAdmin || isInstructor || available === 0}>
             Select Now
           </button>
         </div>

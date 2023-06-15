@@ -2,11 +2,15 @@ import { NavLink, Outlet } from "react-router-dom";
 import NavBar from "../pages/Shared/Navbar/Navbar";
 import Footer from "../pages/Shared/Footer/Footer";
 import { FaChalkboardTeacher, FaHome, FaUsers, FaWallet } from "react-icons/fa";
+import useAdmin from "../hooks/useAdmin";
+import useInstructor from "../hooks/useInstructor";
 
 const Dashboard = () => {
   // todo
-  const isAdmin = true;
-  const isInstructor = true;
+//   const isAdmin = true;
+//   const isInstructor = true;
+const[isAdmin] = useAdmin();
+const[isInstructor] = useInstructor();
 
   return (
     <div>
@@ -64,7 +68,7 @@ const Dashboard = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/dashboard/history">
+            <NavLink to="/dashboard/instructorClasses">
               
               <FaChalkboardTeacher /> My Classes
             </NavLink>
@@ -91,7 +95,7 @@ const Dashboard = () => {
           <li>
             <NavLink to="/dashboard/history">
               
-              <FaChalkboardTeacher /><FaWallet/> Payment History
+              <FaWallet/> Payment History
             </NavLink>
           </li>
           <li>

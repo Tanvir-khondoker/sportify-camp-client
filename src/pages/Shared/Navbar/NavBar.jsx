@@ -2,13 +2,16 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
-import errorImgProfile from '../../../../public/assets/proffile_pic/default_proffile.png';
+import errorImgProfile from "../../../../public/assets/proffile_pic/default_proffile.png";
 import { FaChalkboardTeacher } from "react-icons/fa";
 import useCart from "../../../hooks/useCart";
-
+import useAdmin from "../../../hooks/useAdmin";
+import useInstructor from "../../../hooks/useInstructor";
 
 const NavBar = () => {
-  const {user,logOut} = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
+  const [isAdmin] = useAdmin();
+  const [isInstructor] = useInstructor();
   const [cart] = useCart();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isNameVisible, setIsNameVisible] = useState(false);
@@ -18,8 +21,7 @@ const NavBar = () => {
   };
 
   const handleLogout = () => {
-    logOut()
-      
+    logOut();
   };
 
   const handleMouseEnter = () => {
@@ -30,13 +32,28 @@ const NavBar = () => {
     setIsNameVisible(false);
   };
 
+  const renderCartLink = () => {
+    if (isAdmin || isInstructor) {
+      return null; // Hide the link if user is an admin or instructor
+    }
+
+    return (
+      <Link
+        to="/dashboard/mycart"
+        className="ml-4 block mt-4 sm:inline-block sm:mt-0"
+      >
+        <button className="btn h-6">
+          <FaChalkboardTeacher />
+          <div className="badge badge-secondary">+{cart?.length || 0}</div>
+        </button>
+      </Link>
+    );
+  };
+
   return (
     <nav className="fixed z-10 bg-opacity-30 min-w-[84%] max-w-screen-xl  flex flex-wrap items-center justify-between bg-black text-white p-4 rounded  lg:h-20 ">
       <div className="flex items-center">
-        <Link
-          to="/"
-          className="flex flex-col items-center  font-bold text-lg"
-        >
+        <Link to="/" className="flex flex-col items-center  font-bold text-lg">
           {/* i can use img here if i wan to add a logo to nav */}
           <p>SportifyCamp</p>
         </Link>
@@ -61,50 +78,25 @@ const NavBar = () => {
         </button>
       </div>
       <div
-        className={`${
-          isMenuOpen ? "block" : "hidden"
-        } w-full sm:flex sm:items-center sm:w-auto`}
+        className={`${isMenuOpen ? "block" : "hidden"} w-full sm:flex sm:items-center sm:w-auto`}
       >
         <div className="sm:flex sm:items-center">
-          <Link
-            to="/"
-            className=" ml-4 block mt-4 sm:inline-block sm:mt-0"
-          >
+          <Link to="/" className="ml-4 block mt-4 sm:inline-block sm:mt-0">
             Home
           </Link>
-          <Link
-            to="/instructors"
-            className=" ml-4 block mt-4 sm:inline-block sm:mt-0"
-          >
+          <Link to="/instructors" className="ml-4 block mt-4 sm:inline-block sm:mt-0">
             Instructors
           </Link>
-          <Link
-            to="/classes"
-            className=" ml-4 block mt-4 sm:inline-block sm:mt-0"
-          >
+          <Link to="/classes" className="ml-4 block mt-4 sm:inline-block sm:mt-0">
             Classes
           </Link>
-          <Link
-            to="/secret"
-            className=" ml-4 block mt-4 sm:inline-block sm:mt-0"
-          >
+          <Link to="/secret" className="ml-4 block mt-4 sm:inline-block sm:mt-0">
             Secret
           </Link>
-          <Link
-            to="/dashboard/mycart"
-            className=" ml-4 block mt-4 sm:inline-block sm:mt-0"
-          >
-        <button className="btn h-6">
-           <FaChalkboardTeacher/>
-          <div className="badge badge-secondary">+{cart?.length || 0}</div>
-        </button>
-          </Link>
+          {renderCartLink()} {/* Render the cart link conditionally */}
 
           {user && (
-            <Link
-              to="/dashboard"
-              className=" ml-4 block mt-4 sm:inline-block sm:mt-0"
-            >
+            <Link to="/dashboard" className="ml-4 block mt-4 sm:inline-block sm:mt-0">
               Dashboard
             </Link>
           )}
@@ -117,24 +109,16 @@ const NavBar = () => {
               onMouseLeave={handleMouseLeave}
             >
               <button className="flex items-center  focus:outline-none">
-                {isNameVisible && (
-                  <span className="mr-2 ml-2">{user?.displayName}</span>
-                )}
-                <img className="ml-2 rounded-3xl h-12" src={user?.photoURL ||errorImgProfile } alt="" />
+                {isNameVisible && <span className="mr-2 ml-2">{user?.displayName}</span>}
+                <img className="ml-2 rounded-3xl h-12" src={user?.photoURL || errorImgProfile} alt="" />
               </button>
 
-              <button
-                onClick={handleLogout}
-                className=" ml-9 btn btn-outline border-t-neutral-800"
-              >
+              <button onClick={handleLogout} className="ml-9 btn btn-outline border-t-neutral-800">
                 Logout
               </button>
             </div>
           ) : (
-            <Link
-              to="/login"
-              className=" ml-4 btn btn-outline border-t-neutral-800  text-lg "
-            >
+            <Link to="/login" className="ml-4 btn btn-outline border-t-neutral-800  text-lg ">
               Login
             </Link>
           )}

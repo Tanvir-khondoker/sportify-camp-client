@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { AuthContext } from '../providers/AuthProvider';
 
 const useCart = () => {
-  const { user } = useContext(AuthContext);
+  const { user, } = useContext(AuthContext);
   const token = localStorage.getItem('access-token');
   const { refetch, data: cart = [] } = useQuery({
     queryKey: ['cart', user?.email], // Add a null check to user.email
