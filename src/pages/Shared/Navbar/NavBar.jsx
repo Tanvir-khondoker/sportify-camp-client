@@ -90,9 +90,7 @@ const NavBar = () => {
           <Link to="/classes" className="ml-4 block mt-4 sm:inline-block sm:mt-0">
             Classes
           </Link>
-          <Link to="/secret" className="ml-4 block mt-4 sm:inline-block sm:mt-0">
-            Secret
-          </Link>
+          
           {renderCartLink()} {/* Render the cart link conditionally */}
 
           {user && (

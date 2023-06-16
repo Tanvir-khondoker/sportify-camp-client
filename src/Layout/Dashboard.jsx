@@ -4,6 +4,7 @@ import Footer from "../pages/Shared/Footer/Footer";
 import { FaChalkboardTeacher, FaHome, FaUsers, FaWallet } from "react-icons/fa";
 import useAdmin from "../hooks/useAdmin";
 import useInstructor from "../hooks/useInstructor";
+import { Helmet } from "react-helmet-async";
 
 const Dashboard = () => {
   // todo
@@ -14,6 +15,9 @@ const[isInstructor] = useInstructor();
 
   return (
     <div>
+      <Helmet>
+        <title>SportifyCamp | Dashboard</title>
+      </Helmet>
       <NavBar></NavBar>
 
       <div className="pt-28 drawer lg:drawer-open">
@@ -34,12 +38,7 @@ const[isInstructor] = useInstructor();
             {/* Sidebar content here */}
 
             {isAdmin ?
-             <><li>
-             <NavLink to="/dashboard/home">
-               <FaHome />
-               Admin Home
-             </NavLink>
-           </li>
+             <>
            <li>
              <NavLink to="/dashboard/manageClasses">
             <FaChalkboardTeacher/> Manage Classes
@@ -55,12 +54,7 @@ const[isInstructor] = useInstructor();
             
             : isInstructor ? 
             <>Instructor Content
-            <li>
-            <NavLink to="/dashboard/home">
-              <FaHome />
-              Instructor Home
-            </NavLink>
-          </li>
+            
           <li>
             <NavLink to="/dashboard/addCourse">
              <FaChalkboardTeacher/>
@@ -80,12 +74,7 @@ const[isInstructor] = useInstructor();
            
            
            
-           <><li>
-            <NavLink to="/dashboard/home">
-              <FaHome />
-              Student Home
-            </NavLink>
-          </li>
+           <>
           <li>
             <NavLink to="/dashboard/mycart">
              <FaChalkboardTeacher/>
@@ -93,13 +82,13 @@ const[isInstructor] = useInstructor();
             </NavLink>
           </li>
           <li>
-            <NavLink to="/dashboard/history">
+            <NavLink to="/dashboard">
               
               <FaWallet/> Payment History
             </NavLink>
           </li>
           <li>
-            <NavLink to="/dashboard/history">
+            <NavLink to="/">
               
               <FaChalkboardTeacher /> My enrolled Classes
             </NavLink>

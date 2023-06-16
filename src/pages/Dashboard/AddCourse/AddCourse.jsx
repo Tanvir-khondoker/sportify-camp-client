@@ -2,6 +2,7 @@ import useAuth from "../../../hooks/useAuth";
 import { useForm } from "react-hook-form";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const AddCourse = () => {
   const [axiosSecure] = useAxiosSecure();
@@ -61,6 +62,9 @@ const AddCourse = () => {
 
   return (
     <div className="">
+      <Helmet>
+        <title>SportifyCamp | Add A Course</title>
+      </Helmet>
       <h3 className="pb-2 text-4xl font-semibold text-center border-b-4 border-double border-slate-600">
         Add a new Class{" "}
       </h3>

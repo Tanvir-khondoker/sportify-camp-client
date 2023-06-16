@@ -2,6 +2,7 @@ import { useState } from "react";
 import Swal from "sweetalert2";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import useAllCourse from "../../../hooks/useAllCourse";
+import { Helmet } from "react-helmet-async";
 
 const ManageCourses = () => {
   const [course] = useAllCourse();
@@ -85,6 +86,9 @@ const ManageCourses = () => {
 
   return (
     <div className="w-full">
+      <Helmet>
+        <title>SportifyCamp | Manage Classes</title>
+      </Helmet>
       <SectionTitle heading="Manage all Classes" subHeading="" />
 
       <div className="overflow-x-auto">

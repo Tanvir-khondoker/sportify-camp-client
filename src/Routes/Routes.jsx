@@ -3,7 +3,6 @@ import Main from "../Layout/Main";
 import Home from "../pages/Home/Home/Home";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import OurClasses from "../pages/Classes/OurClasses";
-import Instructors from "../pages/Instructors/Instructors";
 import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
 import Secret from "../pages/Shared/Secrect/Secret";
@@ -13,6 +12,10 @@ import MyCart from "../pages/Dashboard/MyCart/MyCart";
 import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
 import AddCourse from "../pages/Dashboard/AddCourse/AddCourse";
 import ManageCourses from "../pages/Dashboard/ManageClasses/ManageCourses";
+import Payment from "../pages/Dashboard/Payment/Payment";
+import Instructors from "../pages/Instructor/Instructors/Instructors";
+import ClassList from "../pages/Dashboard/INstructor_added_classes/ClassList";
+
 
 export const router = createBrowserRouter([
   {
@@ -42,7 +45,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/instructors",
-        element: <Instructors />,
+        element: <Instructors/>,
       },
     ],
   },
@@ -58,6 +61,14 @@ export const router = createBrowserRouter([
       {
         path: "addCourse",
         element: <AddCourse />,
+      },
+      {
+        path: "payment",
+        element: <Payment />,
+      },
+      {
+        path: "instructorClasses",
+        element:<ClassList/>,
       },
       {
         path: "manageClasses",
